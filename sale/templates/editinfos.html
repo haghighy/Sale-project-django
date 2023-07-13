@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ویرایش اطلاعات</title>
+    <link rel="icon" type="image/x-icon" href="{% static '43.png' %}">
+    <style>
+
+
+        @keyframes bgcolor {
+    0% {
+        background-color: #95d0fa
+    }
+
+    30% {
+        background-color: #8af666
+    }
+
+    60% {
+        background-color: #f99c5e
+    }
+
+    90% {
+        background-color: rgb(246, 126, 146)
+    }
+
+    100% {
+        background-color: #b575f5
+    }
+}
+
+body {
+    -webkit-animation: bgcolor 40s infinite;
+    animation: bgcolor 20s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    color: rgb(0, 0, 0);
+        text-align: center;
+        font-family:"Arabic Typesetting", serif;
+        font-size:28pt;
+}
+
+        input {
+        width: 500px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 12px;
+        background-color: transparent;
+        color: rgb(43, 14, 0);
+        font-size: 12pt;
+    }
+        img {
+        border-radius: 50%;
+        width: 20px;
+        }
+
+            /*adding background to section
+          and animation named color-change*/
+           
+
+      
+.button-73 {
+appearance: none;
+background-color: #000000;
+border-radius: 40em;
+border-style: none;
+box-shadow: #434343 0 -12px 6px inset;
+box-sizing: border-box;
+color: #ffffff;
+cursor: pointer;
+display: inline-block;
+font-family: -apple-system,sans-serif;
+font-size: 0.8rem;
+font-weight: 500;
+letter-spacing: -.24px;
+margin: 0;
+outline: none;
+padding: 1rem 1.3rem;
+quotes: auto;
+text-align: center;
+text-decoration: none;
+transition: all .15s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.button-73:hover {
+background-color: #2b2b2b;
+box-shadow: #7c7c7c 0 -6px 8px inset;
+transform: scale(1.125);
+}
+
+.button-73:active {
+transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+.button-73 {
+font-size: 1.2rem;
+padding: .75rem 2rem;
+}
+}
+    </style>
+</head>
+<body dir="rtl">
+    <center>
+    {{ mymessage }}
+    <h3>{{msg}}</h3>
+    <form action="/edit-info/" method="post">{% csrf_token %}
+        {% if Register_Status == "registered" %}
+        <b><img src="{% static '44.png' %}" alt="Lights">&nbsp;&nbsp;<label for="name">نام:   (غیر قابل تغییر)</label><br>
+        <input type="text" name="name" placeholder="نام و نام خانوادگی" value="{{name}}" readonly><br><br>
+        <label for="userName">نام کاربری:</label><br>
+        <input type="text" name="userName" placeholder="نام کاربری"  value="{{userName}}"><br><br>
+        <img src="{% static '49.png' %}" alt="Lights">&nbsp;&nbsp;<label for="password">رمز عبور: </label><br>
+        <input type="text" name="password" placeholder="رمز" value="{{password}}"><br><br>
+        <img src="{% static '51.png' %}" alt="Lights">&nbsp;&nbsp;<label for="address">نشانی:   (غیر قابل تغییر)</label><br>
+        <input type="text" name="address" placeholder="نشانی " value="{{address}}" readonly><br><br>
+        <img src="{% static '45.png' %}" alt="Lights">&nbsp;&nbsp;<label for="email">ایمیل: </label><br>
+        <input type="email" name="email" value="{{email}}"><br><br>
+        <img src="{% static '56.png' %}" alt="Lights">&nbsp;<label for="telephone_sabet"> شماره تلفن ثابت:   (غیر قابل تغییر)</label><br>
+        <input type="text"  name="telephone_sabet" placeholder="XXXXXXXXXXX" pattern="[0-9]{11}" value="{{telephone_sabet}}" readonly><br><br>
+        <img src="{% static '57.jfif' %}" alt="Lights">&nbsp;<label for="phoneNumber"> شماره تلفن همراه:    (غیر قابل تغییر)</label><br>
+        <input type="text"  name="phoneNumber" placeholder="09XXXXXXXXX" pattern="[0-9]{11}" value="{{phoneNumber}}" readonly><br><br>
+        <label for="codeMelli"> کد ملی:    (غیر قابل تغییر)</label><br>
+        <input type="text"  name="codeMelli" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" value="{{codeMelli}}" readonly><br><br></b>
+
+        <button class="button-73">اعمال تغییرات</button>
+        {% else %}
+        <b><img src="{% static '44.png' %}" alt="Lights">&nbsp;&nbsp;<label for="name">نام:</label><br>
+            <input type="text" name="name" placeholder="نام و نام خانوادگی" value="{{name}}" ><br><br>
+            <label for="userName">نام کاربری:</label><br>
+            <input type="text" name="userName" placeholder="نام کاربری"  value="{{userName}}"><br><br>
+            <img src="{% static '49.png' %}" alt="Lights">&nbsp;&nbsp;<label for="password">رمز عبور: </label><br>
+            <input type="text" name="password" placeholder="رمز" value="{{password}}"><br><br>
+            <img src="{% static '51.png' %}" alt="Lights">&nbsp;&nbsp;<label for="address">نشانی :</label><br>
+            <input type="text" name="address" placeholder="نشانی " value="{{address}}"><br><br>
+            <img src="{% static '45.png' %}" alt="Lights">&nbsp;&nbsp;<label for="email">ایمیل: </label><br>
+            <input type="email" name="email" value="{{email}}"><br><br>
+            <img src="{% static '56.png' %}" alt="Lights">&nbsp;<label for="telephone_sabet"> شماره تلفن ثابت:</label><br>
+            <input type="text"  name="telephone_sabet" placeholder="XXXXXXXXXXX" pattern="[0-9]{11}" value="{{telephone_sabet}}"><br><br>
+            <img src="{% static '57.jfif' %}" alt="Lights">&nbsp;<label for="phoneNumber"> شماره تلفن همراه:</label><br>
+            <input type="text"  name="phoneNumber" placeholder="09XXXXXXXXX" pattern="[0-9]{11}" value="{{phoneNumber}}"><br><br>
+            <label for="codeMelli"> کد ملی:</label><br>
+            <input type="text"  name="codeMelli" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" value="{{codeMelli}}"><br><br></b>
+    
+            <button class="button-73">اعمال تغییرات</button>
+        {% endif %}
+    </form>
+</center>
+</body>
+</html>

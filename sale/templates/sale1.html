@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سفارش</title>
+  <link rel="icon" type="image/x-icon" href="{% static '62.png' %}">
+  <style>
+        body {
+        background-color: #ffffff;
+        background-image: url("{% static '39n.jpg' %}");
+        background-attachment: fixed;
+        background-size: cover;
+        color: rgb(42, 27, 0);
+        text-align: center;
+        font-family:"Arabic Typesetting", serif;
+        font-size:28pt;
+        }
+        
+    input {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    background-color:  #fae091;
+    color: rgb(43, 14, 0);
+  }
+  .input2 {
+    width: 300pt;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+    border: none;
+    border-radius: 12px;
+    background-color:  #fae091;
+    color: rgb(43, 14, 0);
+  }
+
+  .th3{
+    background-color: rgb(247, 187, 38);
+    width: 450px;
+  }
+
+
+  table {
+  border: 1px solid none;
+  table-layout: fixed;
+  width: 1500px;
+}
+  th{
+    background-color: rgb(247, 187, 38);
+  }
+
+  
+  select{
+    block-size: 20pt;
+    width: 80%;
+    background-color:  #fae091;
+    border-radius: 4px;
+    text-align: center;
+    font-size: small;
+  }
+
+
+  
+.button-73 {
+appearance: none;
+background-color: #fa9417;
+border-radius: 40em;
+border-style: none;
+box-shadow: #cf7302 0 -12px 6px inset;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: inline-block;
+font-family: -apple-system,sans-serif;
+font-size: 0.8rem;
+font-weight: 500;
+letter-spacing: -.24px;
+margin: 0;
+outline: none;
+padding: 1rem 1.3rem;
+quotes: auto;
+text-align: center;
+text-decoration: none;
+transition: all .15s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.button-73:hover {
+background-color: #dd7208;
+box-shadow: #b25b04 0 -6px 8px inset;
+transform: scale(1.125);
+}
+
+.button-73:active {
+transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+.button-73 {
+font-size: 1.2rem;
+padding: .75rem 2rem;
+}
+}
+
+
+
+.button-74 {
+appearance: none;
+background-color: #fa9417;
+border-radius: 40em;
+border-style: none;
+box-shadow: #cf7302 0 -12px 6px inset;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: inline-block;
+font-family: -apple-system,sans-serif;
+font-size: 0.8rem;
+font-weight: 500;
+letter-spacing: -.24px;
+margin: 0;
+outline: none;
+padding: 1rem 1.3rem;
+quotes: auto;
+text-align: center;
+text-decoration: none;
+transition: all .15s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+.button-74 {
+font-size: 1.2rem;
+padding: .75rem 2rem;
+}
+}
+  </style>
+</head>
+<body dir="rtl">
+  <form action="/order/" method="post">{% csrf_token %}
+<b>{{msg}}</b>
+        <table>
+          <thead>
+              <tr>
+                  <th>کالا</th>
+                  <th>رنگ</th>
+                  <th>طرح</th>
+                  <th>عرض</th>
+                  <th>طول</th>
+                  <th>صخامت</th>
+                  <th>تعداد</th>
+                  <th class="th3">توضیحات</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for i in '12345' %}
+              <tr>
+                  <td>
+                    <select name="good_description{{i}}" id="good_description{{i}}" >
+                      <option value="non" selected></option>
+                      {% for good in goodoptions %}
+                      <option value="{{good.g_description}}">{{good.g_description}}</option>
+                      {% endfor %}
+                  </select>
+                  </td>
+                  <td>
+                    <select name="color_description{{i}}" id="color_description{{i}}" >
+                      <option value="non" selected></option>
+                      {% for color in coloroptions %}
+                      <option value="{{color.c_description}}">{{color.c_description}}</option>
+                      {% endfor %}
+                  </select>
+                  </td>
+                  <td>
+                    <select name="design_description{{i}}" id="design_description{{i}}" >
+                      <option value="non" selected></option>
+                      {% for design in designoptions %}
+                      <option value="{{design.d_description}}">{{design.d_description}}</option>
+                      {% endfor %}
+                  </select>
+                  </td>
+                  <td>
+                    <input type="number" step="0.01" name="width{{i}}" placeholder="عرض" >
+                  </td>
+                  <td>
+                    <input type="number" step="0.01" name="length{{i}}" placeholder="طول" >
+                  </td>
+                  <td>
+                    <input type="number" step="0.01" name="thickness{{i}}" placeholder="ضخامت" >
+                  </td>
+                  <td>
+                    <input type="number" name="count{{i}}" placeholder="تعداد" >
+                  </td>
+                  <td>
+                    <input type="text" name="tozihat_1order{{i}}" placeholder="توضیحات" >
+                  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+      </table>
+        <label for="tozihat_5orders" style="background-color:  rgb(247, 187, 38) ;">توضیحات مربوط به کل سفارش:</label>
+        <input class="input2" type="text" name="tozihat_5orders" placeholder="توضیحات" ><br><br>
+      {% if Register_Status == "registered" %}
+    <button class="button-73" type="submit">تکمیل سفارش</button>
+    {% else %}
+    <button class="button-74" type="submit" disabled>تکمیل سفارش</button>
+      {% endif %}
+  </form>
+</body>
+</html>

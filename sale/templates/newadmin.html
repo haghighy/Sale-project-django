@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ادمین جدید </title>
+    <link rel="stylesheet" href="{% static 'style-sabtnam.css' %}">
+</head>
+<body dir="rtl">
+  <h3> 
+    {% for m in msg %}
+    <li>{{m}}</li>
+    {% endfor %}
+  </h3>
+    <form action="/newadmin/" method="post">{% csrf_token %}
+      <h3> {{finishmsg}} </h3>
+        <b><label for="name"> نام و نام خانوادگی ادمین جدید:  </label><br>
+        <input type="text" name="name" placeholder="نام و نام خانوادگی" value="{{data.name}}"><br><br>
+        <label for="userName"> نام کاربری:</label><br>
+        <input type="text" name="userName" placeholder="نام کاربری" value="{{data.userName}}"  required><br><br>
+        <label for="password"> رمز عبور:  </label><br>
+        <input type="text" name="password" placeholder="رمز" value="{{data.password}}" required><br><br>
+        <label for="address"> نشانی:</label><br>
+        <input type="text" name="address" placeholder="نشانی" value="{{data.address}}" ><br><br>
+        <label for="email">ایمیل: </label><br>
+        <input type="email" name="email" value="{{data.email}}" ><br><br>
+        <label for="telephone_sabet"> شماره تلفن ثابت:</label><br>
+        <input type="text"  name="telephone_sabet" placeholder="XXXXXXXXXXX" pattern="[0-9]{11}" value="{{data.telephone_sabet}}"><br><br>
+        <label for="phoneNumber"> شماره تلفن همراه:</label><br>
+        <input type="text"  name="phoneNumber" placeholder="09XXXXXXXXX" pattern="[0-9]{11}" value="{{data.phoneNumber}}" required><br><br>
+        <label for="codeMelli"> کد ملی:</label><br>
+        <input type="text"  name="codeMelli" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" value="{{data.codeMelli}}" required><br><br></b>
+
+        <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+        <button onclick="blur()">ثبت نام</button>
+        
+    </form>
+    <center><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form></center>
+</body>
+</html>

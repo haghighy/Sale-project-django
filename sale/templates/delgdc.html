@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حذف</title>
+</head>
+<body dir="rtl">
+    <center><h3>{{sucess_msg}}</h3></center>
+    <form action="/del/" method="post">{% csrf_token %}
+        <center><b>
+        <label for="good_design_color">لطفا کد مد نظر برای حذف شدن را وارد کنید:</label><br>
+        <select name="good_design_color" id="good_design_color" required>
+            <option value="good" selected>کالا</option>
+            <option value="design">طرح</option>
+            <option value="color">رنگ</option>
+        </select>
+        <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+        <button class="button-86" type="submit">نمایش</button><br></b>
+        </center>
+
+    </form>
+
+    {% if selected == "done" %}
+    <form action="/del/" method="post">{% csrf_token %}
+        <center><b>
+            <input type="hidden" id="obj" name="obj" value="{{obj}}" readonly>
+        {% if obj == "good" %}
+        <label for="delete-obj">کالایی را که میخواهید حذف کنید، انتخاب کنید:</label><br>
+        <select name="delete-obj" id="delete-obj" required>
+            {% for r in result %}
+            <option value="{{r.g_description}}">{{r.g_description}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+        {%  if obj == "design" %}
+        <label for="delete-obj">طرحی را که میخواهید حذف کنید، انتخاب کنید:</label><br>
+        <select name="delete-obj" id="delete-obj" required>
+            {% for r in result %}
+            <option value="{{r.d_description}}">{{r.d_description}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+        {%  if obj == "color" %}
+        <label for="delete-obj">رنگی را که میخواهید حذف کنید، انتخاب کنید:</label><br>
+        <select name="delete-obj" id="delete-obj" required>
+            {% for r in result %}
+            <option value="{{r.c_description}}">{{r.c_description}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+        <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+        <button class="button-86" type="submit" onclick="return func2()" >حذف </button><br></b>
+        <!-- <button onclick="myFunction()">حذف </button><br></b>    
+        <input type="text" id="demo" name="demo" value="{{t2}}" readonly>
+        <button class="button-86" type="submit" >dokmeh </button> -->
+    </center>
+    </form>
+    {% endif %}
+    <center><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form></center>
+    <!-- <h1 id="demo"></h1> -->
+
+<script>
+    let t2;
+function myFunction() {
+  let text1 = "آیا از انتخاب خود برای حذف، مطمئنید؟؟ ";
+  if (confirm(text1) == true) {
+    t2 = "ok";
+  } else {
+    t2 = "cancel";
+  }
+  document.getElementById("demo").innerHTML = t2;
+}
+
+
+function func2() {
+       if (confirm('آیا از انتخاب خود برای حذف، مطمئنید؟؟ ')) {
+           e.submit();
+       } else {
+           return false;
+       }
+    }
+</script>
+</body>
+
+</html>

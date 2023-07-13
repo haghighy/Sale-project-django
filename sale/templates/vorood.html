@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale</title>
+    <link rel="stylesheet" href="{% static 'style-login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'fav2.ico' %}">
+    <h2>
+        {{msg}}
+    </h2>
+</head>
+<body dir="rtl">
+    <center>
+    <form action="/" method="post">{% csrf_token %}
+        <b>
+        <label for="userName"> نام کاربری:</label><br>
+        <input type="text" style="text-align:center;" name="userName" placeholder="نام کاربری" autocomplete="off" required><br>
+        <label for="password"> رمز عبور:</label><br>
+        <input type="password" style="text-align:center;" name="password" id="password" placeholder="XXXXXXXXXX" autocomplete="off" required><br>
+        <input class="input32" type="checkbox" name="show-pass" onclick="myFunction()"><label style="font-size: 30px;" for="show-pass">نمایش رمز</label>
+
+        <button class="button-86" type="submit">ورود</button><br></b>
+    </form>
+    <br><center><a href="/forgot"><button class="button-73" role="button">رمز خود را فراموش کرده ام!</button></a></center>
+    <center><a href="/register"><button class="button-73" role="button">ثبت نام در سایت</button></a></center>
+    <center><a href="/log-in-admin"><button class="button-73" role="button">پنل ادمین</button></a></center>
+</center>
+<script>
+    function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body>
+</html>

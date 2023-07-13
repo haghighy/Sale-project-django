@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>افزودن</title>
+</head>
+<body dir="rtl">
+    <center><h3>{{sucess_msg}}</h3></center>
+    <form action="/add/" method="post">{% csrf_token %}
+        <center><b>
+        <select name="good_design_color" id="good_design_color" required>
+            <option value="good">کالا</option>
+            <option value="design">طرح</option>
+            <option value="color">رنگ</option>
+        </select>
+        <label for="description">شرح را وارد کنید:</label><br>
+        <input type="text"  name="description" required><br><br>
+        <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+        <button class="button-86" type="submit">ثبت</button><br></b>
+        </center>
+    </form>
+    <center><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form></center>
+</body>
+
+</html>

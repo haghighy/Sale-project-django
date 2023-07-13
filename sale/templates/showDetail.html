@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ُسفارش</title>
+  <style>
+    input {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+    </style>
+</head>
+<body dir="rtl">
+        <table id="customers">
+          <thead>
+              <tr>
+                <th>کد سفارش</th>
+                  <th> کالا</th>
+                  <th> رنگ</th>
+                  <th> طرح</th>
+                  <th>عرض</th>
+                  <th>طول</th>
+                  <th>صخامت</th>
+                  <th>تعداد</th>
+                  <th>توضیحات</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for r in result %}
+              <tr>
+                <td>{{r.orderID}}</td>
+                  <td>{{r.good_description}}</td>
+                  <td>{{r.color_description}}</td>
+                  <td>{{r.design_description}}</td>
+                  <td>{{r.width}}</td>
+                  <td>{{r.length}}</td>
+                  <td>{{r.thickness}}</td>
+                  <td>{{r.count}}</td>
+                  <td>{{r.tozihat_1order}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      <p> توضیحات کل سفارش: {{tozih_kol}}</p>
+      <p>پیام ادمین: {{adminToUser}}</p>
+      <p>نُت: {{note}}</p>
+</body>
+</html>

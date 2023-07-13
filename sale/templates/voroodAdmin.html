@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style-login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'fav2.ico' %}">
+    <title>ورود ادمین</title>
+    <style>
+        body{
+            font-size: 27pt;
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <h3>
+        {{msg}}
+    </h3>
+    <center>
+    <form action="/log-in-admin/" method="post">{% csrf_token %}
+        <b>
+        <label for="userName"> نام کاربری:</label><br>
+        <input type="text" style="text-align:center;" name="userName" placeholder="نام کاربری" autocomplete="off" required><br><br>
+        <label for="password"> رمز عبور:</label><br>
+        <input type="password" style="text-align:center;" name="password" id="password" placeholder="XXXXXXXXXX" autocomplete="off" required><br><br>
+        <input class="input32" type="checkbox" name="show-pass" onclick="myFunction()"><label style="font-size: 30px;" for="show-pass">نمایش رمز</label>
+
+        <button class="button-86" type="submit">ورود</button><br></b>
+    </form>
+</center>
+<script>
+    function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+</body>
+</html>

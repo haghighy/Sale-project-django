@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ویرایش اطلاعات ادمین</title>
+</head>
+<body dir="rtl">
+    {{ mymessage }}
+    <h3>{{msg}}</h3>
+    <form action="/edit-admin/" method="post">{% csrf_token %}
+        <b><label for="name">نام:</label><br>
+            <input type="text" name="name" placeholder="نام و نام خانوادگی" value="{{name}}" ><br><br>
+            <label for="userName">نام کاربری:</label><br>
+            <input type="text" name="userName" placeholder="نام کاربری"  value="{{userName}}"><br><br>
+            <label for="password">رمز عبور: </label><br>
+            <input type="text" name="password" placeholder="رمز" value="{{password}}"><br><br>
+            <label for="address">نشانی :</label><br>
+            <input type="text" name="address" placeholder="نشانی " value="{{address}}"><br><br>
+            <label for="email">ایمیل: </label><br>
+            <input type="email" name="email" value="{{email}}"><br><br>
+            <label for="telephone_sabet"> شماره تلفن ثابت:</label><br>
+            <input type="text"  name="telephone_sabet" placeholder="XXXXXXXXXXX" pattern="[0-9]{11}" value="{{telephone_sabet}}"><br><br>
+            <label for="phoneNumber"> شماره تلفن:</label><br>
+            <input type="text"  name="phoneNumber" placeholder="09XXXXXXXXX" pattern="[0-9]{11}" value="{{phoneNumber}}"><br><br>
+            <label for="codeMelli"> کد ملی:</label><br>
+            <input type="text"  name="codeMelli" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" value="{{codeMelli}}"><br><br></b>
+    
+            <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+            <button onclick="blur()">اعمال تغییرات</button>
+    </form>
+    <center><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form></center>
+</body>
+</html>

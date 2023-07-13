@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاهده سفارشات </title>
+    <style>
+      body {
+  background-color: #713e1d;
+  color: rgb(232, 211, 186);
+  text-align: center;
+  font-family:"Arabic Typesetting", serif;
+  font-size:large;
+}
+
+      .styled-table {
+border-collapse: collapse;
+margin: 25px 0;
+font-size: 0.9em;
+color: rgb(232, 211, 186);
+font-family: sans-serif;
+min-width: 400px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+background-color: #341906;
+color: rgb(227, 192, 150);
+text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+padding: 12px 15px;
+}
+.styled-table tbody tr {
+border-bottom: 1px solid #844b25;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #844b25;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #002398;
+}
+.styled-table tbody tr.active-row {
+font-weight: bold;
+color: rgb(227, 192, 150);
+}
+.button-73 {
+appearance: none;
+background-color: #fa9417;
+border-radius: 40em;
+border-style: none;
+box-shadow: #cf7302 0 -12px 6px inset;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: inline-block;
+font-family: -apple-system,sans-serif;
+font-size: 0.8rem;
+font-weight: 500;
+letter-spacing: -.24px;
+margin: 0;
+outline: none;
+padding: 1rem 1.3rem;
+quotes: auto;
+text-align: center;
+text-decoration: none;
+transition: all .15s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+
+.button-73:hover {
+background-color: #dd7208;
+box-shadow: #b25b04 0 -6px 8px inset;
+transform: scale(1.125);
+}
+
+.button-73:active {
+transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+.button-73 {
+font-size: 1.0rem;
+padding: .75rem 2rem;
+}
+}
+
+label{
+  font-size: x-large;
+  font-weight: bold;
+}
+
+select{
+  block-size: 20pt;
+  width: 100%;
+  background-color:  #fae091;
+  border-radius: 4px;
+  text-align: center;
+  font-size: small;
+}
+
+.select2{
+  block-size: 20pt;
+  width: 30%;
+  background-color:  #fae091;
+  border-radius: 4px;
+  text-align: center;
+  font-size: small;
+}
+
+.box {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+.box select {
+background-color: #0563af;
+color: white;
+padding: 12px;
+width: 400px;
+border: none;
+font-size: 20px;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+-webkit-appearance: button;
+appearance: button;
+outline: none;
+}
+
+.box::before {
+content: "\f13a";
+font-family: FontAwesome;
+position: absolute;
+top: 0;
+right: 0;
+width: 20%;
+height: 100%;
+text-align: center;
+font-size: 28px;
+line-height: 45px;
+color: rgba(255, 255, 255, 0.5);
+background-color: rgba(255, 255, 255, 0.1);
+pointer-events: none;
+}
+
+.box:hover::before {
+color: rgba(255, 255, 255, 0.6);
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+padding: 30px;
+}
+
+
+.th3{
+    width: 50px;
+  }
+ 
+tr{
+  text-align: center;
+}
+input {
+    width: 100%;
+    height: 15pt;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    background-color:  #f3c94c;
+    color: rgb(43, 14, 0);
+}
+.input2 {
+    width: 10%;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    background-color:  #f3c94c;
+    color: rgb(43, 14, 0);
+}
+.input3 {
+    width: 70pt;
+    height: 15pt;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    background-color:  #f3c94c;
+    color: rgb(43, 14, 0);
+}
+th{
+  text-align: center;
+}
+td{
+  text-align: center;
+}
+.td2{
+  text-align: center;
+}
+  </style>
+    
+</head>
+<body dir="rtl">
+    <center>
+
+      <br><br>
+    <form action="/allorders/" method="post">{% csrf_token %}
+      <label for="show-res">مشاهده سفارشات بر اساس:</label>
+      <select name="show-res" id="show-res" class="select2">
+        <option value="by-Num" selected>همه سفارش ها به ترتیب شماره سفارش</option>
+        <option value="by-date"> همه سفارش ها به ترتیب تاریخ(جدید به قدیم)</option>
+        <option value="by-date-old"> همه سفارش ها به ترتیب تاریخ(قدیمی به جدید)</option>
+        <option value="waits" >سفارشات ثبت شده(در دست بررسی)</option>
+        <option value="oks" >سفارش های تایید شده</option>
+        <option value="not-oks" >سفارش های رد شده</option>
+        <option value="sent-for-make" >سفارشات ارسال برای تولید</option>
+        <option value="finishes" >سفارشات مختومه</option>
+    </select>
+      
+    &nbsp;&nbsp;&nbsp;&nbsp;<label for="show-with-user">سفارشات کاربر خاص</label>
+      <select name="show-with-user" id="show-with-user" class="select2">
+        <option value="nothing" selected>-</option>
+        {% for user in allUsers %}
+        <option value="{{user.userID}}"> username: {{user.userName}} , id: {{user.userID}}</option>
+        {% endfor %}
+    </select>
+    <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button class="button-73" type="submit">نمایش</button>
+    </form>
+
+
+    <h2>{{myMSG}}</h2>
+    <form action="/allorders/" method="post">{% csrf_token %}
+    <center><table class="styled-table">
+        <thead>
+            <tr>
+                <th >کد کاربری(آیدی) سفارش دهنده</th>
+                <th>نام کاربری سفارش دهنده</th>
+                <th>تاریخ ثبت سفارش</th>
+                <th>شماره سفارش</th>
+                <th>وضعیت فعلی سفارش</th>
+                <th>وضعیت جدید سفارش</th>
+                <th>پیام ادمین به کاربر</th>
+                <th>پیام ادمین به ادمین (note)</th>
+                <th>نمایش جزییات</th>
+            </tr>
+        </thead>
+        <tbody>
+          <h3> سفارشات کاربر خاص: {{username_toShow}}</h3>
+            {% for r in result %}
+            <tr>
+                <td>{{r.x.U_userID}}</td>
+                <td>{{r.y}}</td>
+                <td>{{r.x.registration_date}}</td>
+                <td class="td2"><center><input class="input3" type="number" id="orderNumber{{forloop.counter}}" name="orderNumber{{forloop.counter}}" value="{{r.x.orderNumber}}" readonly></center></td>
+                <td>{{r.x.Order_Status}}</td>
+                <td>
+                  <select name="orderStatus{{forloop.counter}}" id="orderStatus{{forloop.counter}}" >
+                    <option value="noting" selected> </option>
+                    <option value="sabt">ثبت شده</option>
+                    <option value="taeed">تایید</option>
+                    <option value="rad">عدم تایید سفارش</option>
+                    <option value="ersal">ارسال برای تولید</option>
+                    <option value="tahvil">تحویل داده شده</option>
+                </select>
+                </td>
+                <td><center><input type="text" id="text_adminTouser{{forloop.counter}}" name="text_adminTouser{{forloop.counter}}" value="{{r.x.text_adminTouser}}"></center></td>
+                <td><center><input type="text" id="text_adminToadmin{{forloop.counter}}" name="text_adminToadmin{{forloop.counter}}" value="{{r.x.text_adminToadmin}}"></center></td>
+                <td><a class="btn-link" id="detailOrder" name="detailOrder" href="/details/?sku={{r.x.orderNumber}}">نمایش</a></td>
+              </tr>
+            {% endfor %}
+            <!-- and so on... -->
+        </tbody>
+    </table></center>
+    <label for="resultCount">تعداد سفارش ها:</label>  
+    <input type="text" id="resultCount" name="resultCount" value="{{resultCount}}" class="input2" readonly>
+    <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+
+    <br><button class="button-73" type="submit">اعمال تغییرات</button>
+    </form>
+  </center>
+    <br><br><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form>
+
+
+
+
+    <script>
+        var x, i, j, l, ll, selElmnt, a, b, c;
+        /*look for any elements with the class "custom-select":*/
+        x = document.getElementsByClassName("custom-select");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+          selElmnt = x[i].getElementsByTagName("select")[0];
+          ll = selElmnt.length;
+          /*for each element, create a new DIV that will act as the selected item:*/
+          a = document.createElement("DIV");
+          a.setAttribute("class", "select-selected");
+          a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+          x[i].appendChild(a);
+          /*for each element, create a new DIV that will contain the option list:*/
+          b = document.createElement("DIV");
+          b.setAttribute("class", "select-items select-hide");
+          for (j = 1; j < ll; j++) {
+            /*for each option in the original select element,
+            create a new DIV that will act as an option item:*/
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function(e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                  if (s.options[i].innerHTML == this.innerHTML) {
+                    s.selectedIndex = i;
+                    h.innerHTML = this.innerHTML;
+                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                    yl = y.length;
+                    for (k = 0; k < yl; k++) {
+                      y[k].removeAttribute("class");
+                    }
+                    this.setAttribute("class", "same-as-selected");
+                    break;
+                  }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+          }
+          x[i].appendChild(b);
+          a.addEventListener("click", function(e) {
+              /*when the select box is clicked, close any other select boxes,
+              and open/close the current select box:*/
+              e.stopPropagation();
+              closeAllSelect(this);
+              this.nextSibling.classList.toggle("select-hide");
+              this.classList.toggle("select-arrow-active");
+            });
+        }
+        function closeAllSelect(elmnt) {
+          /*a function that will close all select boxes in the document,
+          except the current select box:*/
+          var x, y, i, xl, yl, arrNo = [];
+          x = document.getElementsByClassName("select-items");
+          y = document.getElementsByClassName("select-selected");
+          xl = x.length;
+          yl = y.length;
+          for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+              arrNo.push(i)
+            } else {
+              y[i].classList.remove("select-arrow-active");
+            }
+          }
+          for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+              x[i].classList.add("select-hide");
+            }
+          }
+        }
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
+        </script>
+</body>
+</html>

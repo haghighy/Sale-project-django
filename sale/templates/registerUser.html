@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل ادمین</title>
+    <style>
+        body {
+    background-color: #bbf9fd;
+    color: rgb(22, 3, 79);
+    text-align: center;
+    font-family:"Arabic Typesetting", serif;
+    font-size:15pt;
+}
+
+input {
+    width: 100%;
+    padding: 8px 14px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+        .styled-table {
+border-collapse: collapse;
+margin: 25px 0;
+font-size: 0.9em;
+font-family: sans-serif;
+min-width: 400px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+background-color: #2f1df7;
+color: #030303;
+text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+padding: 12px 15px;
+}
+.styled-table tbody tr {
+border-bottom: 1px solid #b7e9ed;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #aec6ef;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #002398;
+}
+.styled-table tbody tr.active-row {
+font-weight: bold;
+color: #050002;
+}
+
+.button-73 {
+    appearance: none;
+    background-color: #c7f6e3;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+    
+    .button-73:hover {
+    background-color: #98f6f1;
+    box-shadow: #4bf4f7 0 -6px 8px inset;
+    transform: scale(1.125);
+    }
+    
+    .button-73:active {
+    transform: scale(1.025);
+    }
+    
+    @media (min-width: 768px) {
+    .button-73 {
+    font-size: 1.2rem;
+    padding: .75rem 2rem;
+    }
+    }
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box select {
+  background-color: #0563af;
+  color: white;
+  padding: 12px;
+  width: 400px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+
+
+
+
+
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 5px 15px;
+  border: 3px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+    </style>
+</head>
+<body dir="rtl">
+    <center>
+    <h3>{{ myMSG }}</h3>
+
+
+    <form action="/newUsers/" method="post">{% csrf_token %}
+      <select name="show-res" id="show-res" >
+        <option value="all" > همه کاربران</option>
+        <option value="yes">تایید شده ها</option>
+        <option value="no">رد شده ها </option>
+        <option value="not-yet" selected>درحال بررسی ها </option>
+    </select>
+    <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+      <button class="button-73" type="submit">نمایش</button>
+    </form>
+
+
+    <form action="/newUsers/" method="post">{% csrf_token %}
+    <table class="styled-table">
+        <thead>
+            <tr><center>
+                <th><center>کد کاربری(آیدی)</center></th>
+                <th><center>نام</center></th>
+                <th><center>شماره تلفن همراه</center></th>
+                <th><center>کد ملی</center></th>
+                <th><center>نام کاربری</center></th>
+                <th><center>آدرس</center></th>
+                <th><center>ایمیل</center></th>
+                <th><center>وضعیت فعلی</center></th>
+                <th><center>وضعیت جدید</center></th>
+            </center>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in result %}
+
+            <tr>
+                <td><center><input type="text" id="ID{{forloop.counter}}" name="ID{{forloop.counter}}" value="{{r.userID}}" readonly></center></td>
+                <td><center><input type="text" id="name{{forloop.counter}}" name="name{{forloop.counter}}" value="{{r.name}}" readonly></center></td>
+                <td><center><input type="text" id="phoneNumber{{forloop.counter}}" name="phoneNumber{{forloop.counter}}" value="{{r.phoneNumber}}" readonly></center></td>
+                <td><center><input type="text" id="codeMelli{{forloop.counter}}" name="codeMelli{{forloop.counter}}" value="{{r.codeMelli}}" readonly></center></td>
+                <td><center><input type="text" id="userName{{forloop.counter}}" name="userName{{forloop.counter}}" value="{{r.userName}}" readonly></center></td>
+                <td><center><input type="text" id="address{{forloop.counter}}" name="address{{forloop.counter}}" value="{{r.address}}" readonly></center></td>
+                <td><center><input type="text" id="email{{forloop.counter}}" name="email{{forloop.counter}}" value="{{r.email}}" readonly></center></td>
+                <td><center><input type="text" id="CurrentregisterStatus{{forloop.counter}}" name="CurrentregisterStatus{{forloop.counter}}" value="{{r.Register_Status}}" readonly></center></td>
+                <td>
+                    <select name="registerStatus{{forloop.counter}}" id="registerStatus{{forloop.counter}}" >
+                      <option value="noting" selected> </option>
+                      <option value="register">تایید</option>
+                      <option value="non-register">عدم تایید</option>
+                      <option value="not-register-yet">در حال بررسی</option>
+                  </select>
+                  </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <label for="resultCount">تعداد کاربران اخیرا افزوده شده:</label>  
+    <input type="number" id="resultCount" name="resultCount" value="{{resultCount}}" readonly>
+    <input type="hidden" id="adminID" name="adminID" value="{{adminID}}" readonly>
+    <button class="button-73" type="submit">اعمال تغییرات</button>
+    </form>
+    <center><form action="/paneladmin/" method="get"><button class="button-73"  type="submit" name="User" value="{{adminID}}">بازگشت به صفحه اصلی</button></form></center>
+
+</center>
+</body>
+</html>

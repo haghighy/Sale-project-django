@@ -1,0 +1,92 @@
+body {
+    background-color: #49ea7f;
+    color: rgb(250, 250, 250);
+    text-align: center;
+    font-family:"Arabic Typesetting", serif;
+    font-size:23pt;
+}
+input {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.styled-table {
+border-collapse: collapse;
+margin: 25px 0;
+font-size: 0.9em;
+font-family: sans-serif;
+min-width: 400px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+background-color: #009879;
+color: #ffffff;
+text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+padding: 12px 15px;
+}
+.styled-table tbody tr {
+border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+font-weight: bold;
+color: #009879;
+}
+
+.button-73 {
+    appearance: none;
+    background-color: #c7f6e3;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+    
+    .button-73:hover {
+    background-color: #98f6f1;
+    box-shadow: #4bf4f7 0 -6px 8px inset;
+    transform: scale(1.125);
+    }
+    
+    .button-73:active {
+    transform: scale(1.025);
+    }
+    
+    @media (min-width: 768px) {
+    .button-73 {
+    font-size: 1.2rem;
+    padding: .75rem 2rem;
+    }
+    }
